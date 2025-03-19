@@ -25,6 +25,6 @@ jobs:
       - name: Scan python:3.6 image for vulnerabilities
         uses: docker/scout-action@v1
         with:
+          command: cves
           image: python:3.6
           only-severities: critical,high,medium
-          accept-license: true
