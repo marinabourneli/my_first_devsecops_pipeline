@@ -1,0 +1,23 @@
+name: Docker Vulnerability Scan - Python 3.6
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  docker-vuln-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Scan python:3.6 image for vulnerabilities
+        uses: docker/scout-action@v1
+        with:
+          image: python:3.6
+          only-severities: critical,high,medium
